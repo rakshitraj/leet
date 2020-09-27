@@ -9,6 +9,8 @@
  * };
  */
 
+#include <iostream>
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -25,7 +27,7 @@ public:
         ListNode* current = dummyHead;
         int carry = 0;
         int sum;
-        while (l1 != NULL && l2 != NULL) {
+        while (l1 != NULL && l2 != NULL) { 
             sum = carry + l1->val + l2->val;
             carry = sum/10;
             current->next = new ListNode(sum%10);
