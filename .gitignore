@@ -1,3 +1,8 @@
 # IDE configuraion files
 .idea/
 .vscode/
+
+# Executables
+*.exe
+*.out
+*.o
