@@ -1,5 +1,5 @@
 #include<iostream>
-#include<map>
+#include<unordered_map>
 #include<stack>
 #include<cassert>
 
@@ -7,18 +7,26 @@ using namespace std;
 
 class Solution{
 public:
-    map<char, char> dict{ {']','['}, {'}','{'}, {')','('} };
-
-    bool isValid(string s) {
-        string v;
-        for (auto &ch: s) {
-            if (!v.empty() && dict[ch] == v.back())
-                v.pop_back();
-            else
-            {
-                v.push_back(ch);
+     bool isValid(string s) {
+        std::unordered_map<char, char> match = {
+            {')','('},
+            {'}','{'},
+            {']','['}
+        };
+        std::stack<char> opened;
+        for(char ch: s) {
+            if (match.find(ch) != match.end()) {
+                if ( opened.empty() || opened.top() != match[ch]) {
+                    return false;
+                }
+                else {
+                    opened.pop();
+                } 
             }
-            return v.empty();   
+            else {
+                opened.push(ch);
+            }
         }
+        return opened.empty() ;
     }
 };
