@@ -14,19 +14,15 @@ public:
             {']','['}
         };
         std::stack<char> opened;
-        for(char ch: s) {
-            if (match.find(ch) != match.end()) {
-                if ( opened.empty() || opened.top() != match[ch]) {
+        for (int i=0; i<s.length(); i++) {
+            if (match.find(s[i]) != match.end())
+                if ( opened.size()==0 || opened.top() != match[s[i]])
                     return false;
-                }
-                else {
+                else
                     opened.pop();
-                } 
-            }
-            else {
-                opened.push(ch);
-            }
+            else
+                opened.push(s[i]);
         }
-        return opened.empty() ;
+        return opened.size()==0 ;
     }
 };
