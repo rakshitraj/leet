@@ -11,15 +11,26 @@ struct TreeNode{
 
 class Solution{
 public:
-    bool isValidBST(TreeNode* root, int* min_val= nullptr, int* max_val= nullptr) {
+    /**
+     * @brief   Use inorder traversal to check the validity of BST in O(n)
+     * @details Traverse the BST in-order and check if it is in ascending order.
+     *          To do this, instead of mainining the entire traversal, just compare if 
+     *          previous element is less than the current element. Thus preserving only 
+     *          the address of previous element.
+     * @param root  Current element
+     * @param prev  Previous element std::nullptr by default
+     * @returns bool true if BST is valid
+     * 
+     */
+    bool isValidBST(TreeNode* root, int* prev= nullptr) {
+        // Exit condition
         if (!root) return true;
-        auto val = root->val;
-        if (max_val && val >= *max_val)
-            return false;
-        if (min_val && val <= *min_val)
-            return false;
-        auto left = isValidBST(root->left, min_val, &val); 
-        auto right = isValidBST(root->right, &val, max_val);
-        return left && right;
+        // traverse left sub tree(s)
+        if (!validate(root.left, prev)) return false;
+        // Root
+        if (prev != NULL && prev->val >= root.value) return false;
+        // Right sub tree
+        prev = root;
+        return validate(root->right, prev);
     }
 };
