@@ -1,3 +1,3 @@
 # leet
 
-Playgroung for solving leetcode questions
+Playground for solving leetcode questions
