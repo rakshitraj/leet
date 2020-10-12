@@ -4,3 +4,4 @@ class Solution:
         for _ in range(n):
             a, b = b, a+b
         return a
+        
