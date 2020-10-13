@@ -20,11 +20,11 @@ public:
         for (int i=1; i<nums.size(); i++) {
             
             if ((nums[i] + current_max_sum[i-1]) > nums[i]) {
-                current_max_sum[i] = nums[i] + current_max_sum[i-1];
+                current_max_sum.push_back(nums[i] + current_max_sum[i-1]);
                 
             }
             else {
-                current_max_sum[i] = nums[i];
+                current_max_sum.push_back(nums[i]);
             }
             
             if (current_max_sum[i] > max)
