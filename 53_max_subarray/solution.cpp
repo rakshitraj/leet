@@ -8,31 +8,14 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
         
-        std::vector<int> current_max_sum;
-        std::vector<int> max_sum;
-        
-        // Base case
-        int max = nums[0];
-        max_sum.push_back(nums[0]);
-        current_max_sum.push_back(nums[0]);
-        
-        
-        for (int i=1; i<nums.size(); i++) {
-            
-            if ((nums[i] + current_max_sum[i-1]) > nums[i]) {
-                current_max_sum.push_back(nums[i] + current_max_sum[i-1]);
-                
-            }
-            else {
-                current_max_sum.push_back(nums[i]);
-            }
-            
-            if (current_max_sum[i] > max)
-                    max = current_max_sum[i];
-            
-            max_sum.push_back(max);
+        int currSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i=1; i < nums.size(); i++) {
+            currSum = std::max(nums[i], currSum + nums[i]);
+            maxSum = std::max(currSum, maxSum);
         }
-        return max_sum.back();
+        return maxSum;
     }
 };
 
