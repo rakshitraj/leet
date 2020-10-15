@@ -13,14 +13,13 @@ class Solution {
         int left =0, right =0;
         int longest = 0;
 
-        for (int i=0; s[i]!='\0'; ++i) {
-
-            right = i;
+        while(right < s.length()) {
             while(!letters.insert(s[right]).second) {
                 letters.erase(s[left]);
                 left++;
             }
-            if ((right-left+1) > longest) longest = right -left +1;
+            if ((right-left+1) > longest) longest = right -left+1;
+            right++;
         }
         return longest;
     }
