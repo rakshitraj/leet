@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cassert>
-#include <string>
+#include <cstring>
 #include <set>
 
 using namespace std;
@@ -9,19 +9,27 @@ class Solution {
  public:
     int lengthOfLongestSubstring(string s) {
        
-        std::set<char> letters;
-        int left =0, right =0;
-        int longest = 0;
+       bool unique_char[256];
+       std::memset(unique_char, false, sizeof(unique_char));
+       int left, right;
+       int max_len = 0, curr_len = 0;
+       left = 0;
+       right = 0;
 
-        while(right < s.length()) {
-            while(!letters.insert(s[right]).second) {
-                letters.erase(s[left]);
-                left++;
-            }
-            if ((right-left+1) > longest) longest = right -left+1;
-            right++;
-        }
-        return longest;
+       while(right < s.length()) {
+           if (unique_char[s[right]]) {
+               unique_char[s[left]] = false;
+               left++;
+           }
+           else
+           {
+               unique_char[s[right]] = true;
+               curr_len = right - left +1;
+               max_len = std::max(max_len, curr_len);
+               right ++;
+           }
+       }
+       return max_len;
     }
 };
 
