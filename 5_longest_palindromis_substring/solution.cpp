@@ -48,7 +48,6 @@ public:
         }
 
         str.empty();
-
         return output;
     }
 };
@@ -121,7 +120,6 @@ void test(Solution obj) {
     std::cout << s2 << " : " << op2  << std::endl;
     assert(p2 == op2);
 }
-
 
 int main()
 {
