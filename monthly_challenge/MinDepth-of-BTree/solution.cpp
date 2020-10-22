@@ -37,9 +37,12 @@ public:
 
         while(!levels.empty()){
             curr = levels.front().first;
-            if (curr == NULL) return levels.front().second;
-            levels.push(std::make_pair(curr->left, ++depth));
-            levels.push(std::make_pair(curr->right, depth));
+            depth = levels.front().second;
+            if (!curr->left && !curr->right) return levels.front().second;
+            
+            depth++;
+            if (curr->left) levels.push(std::make_pair(curr->left, depth));
+            if (curr->right) levels.push(std::make_pair(curr->right, depth));
             levels.pop();
         }
         return depth;
