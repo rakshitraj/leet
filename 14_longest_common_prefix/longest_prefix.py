@@ -13,7 +13,7 @@ class Solution:
         for i, char in enumerate(s1):
             if i < len(s2):
                 if char == s2[i] :
-                    prefix += char;
+                    prefix += char
                 else:
-                    break;
+                    break
         return prefix
