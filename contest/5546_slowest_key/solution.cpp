@@ -11,12 +11,14 @@ public:
      
         duration.push_back(releaseTimes[0]);
         char longest = keysPressed[0];
+        int longPress = releaseTimes[0];
         
         for (int i=1; i < releaseTimes.size(); i++) {
             duration.push_back(releaseTimes[i] - releaseTimes[i-1]);
-            if (duration[i] >= duration[i-1]){
-                 if (duration[i] >= duration[i-1]) longest = keysPressed[i];
-                 else if (duration[i] == duration[i-1]) longest = std::max(keysPressed[i], keysPressed[i-1]);
+            if (duration[i] >= longPress){
+                if (duration[i] > longPress) longest = keysPressed[i];
+                else if (duration[i] == longPress) longest = std::max(keysPressed[i], keysPressed[i-1]);
+                longPress = duration[i];
             }
         }
         return longest;
