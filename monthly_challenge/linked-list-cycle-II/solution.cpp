@@ -36,3 +36,8 @@ public:
         else return curr;
     }
 };
+
+int main()
+{
+    return 0;
+}
