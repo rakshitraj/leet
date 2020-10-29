@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 class Solution {
     public String removeVowels(String S) {
         Set<Character> set = new HashSet<>();
