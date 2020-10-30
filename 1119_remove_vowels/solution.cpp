@@ -23,3 +23,8 @@ public:
         return output;
     }
 };
+
+int main()
+{
+    return 0;
+}
