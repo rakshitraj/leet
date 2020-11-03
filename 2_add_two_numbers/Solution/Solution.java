@@ -1,3 +1,7 @@
+package Solution;
+
+import ListNode.ListNode;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -8,7 +12,7 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution{
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyhead = new ListNode(0);
         ListNode p = l1, q = l2, curr = dummyhead;
