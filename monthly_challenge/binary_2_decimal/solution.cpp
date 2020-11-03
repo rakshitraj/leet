@@ -26,21 +26,13 @@ class Solution {
 public:
     int getDecimalValue(ListNode* head) {
         
-        vector<int> binary;
         int sum = 0;
         ListNode* curr = head;
         
         while(curr){
-            binary.push_back(curr->val);
+            sum += sum*2 + curr->val;
             curr = curr->next;
         }
-        int index = binary.size() - 1;
-        for (int i = 0; i < binary.size(); i++){
-            if (binary[i] == 1)
-                sum += pow(2,index);
-            index--;
-        }
-        
         return sum;
     }
 };
