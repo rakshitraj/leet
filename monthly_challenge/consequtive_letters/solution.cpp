@@ -7,16 +7,20 @@ using namespace std;
 class Solution {
 public:
     int maxPower(string s) {
-        std::vector<int> power;
-        power.push_back(1);
-        int max = 0;
-
-        for (int i=1; i<s.length(); i++) {
-            if (s[i-1] == s[i])
-                power.push_back(power.back() + 1);
-            else power.push_back(1);
-            max = std::max(max, power.back());
+        int max_pow = 0, pow = 1;
+        char prev = ' ';
+        
+        for (auto c : s){
+            if (c==prev)
+                pow++;
+            else
+                pow = 1;
+            
+            if (pow > max_pow)
+                max_pow = pow;
+            
+            prev = c;
         }
-        return max;
+        return max_pow;
     }
 };
