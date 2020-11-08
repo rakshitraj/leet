@@ -23,36 +23,59 @@ struct TreeNode {
 };
 
 class Solution {
-    int sumSubTree (TreeNode* root){
-        int sum = 0;
-        if (root != NULL){
-            sum+= (root->val + sumSubTree(root->left) + sumSubTree(root->right));
+    
+    int helper(TreeNode *root, int &sum)
+    {
+        if(!root)
+        {
+            sum = 0;
+            return 0;
         }
-        return sum;
+        int lSum, rSum, l, r;
+        l = helper(root->left, lSum);
+        r = helper(root->right, rSum);
+        sum = lSum + rSum + root->val;
+        return abs(lSum - rSum) + l + r;
     }
-
-    void get_tilt(TreeNode* root, vector<int>& allTilt){
-
-        if (root != NULL){
-        int tilt = abs(sumSubTree(root->left) - sumSubTree(root->right));
-        get_tilt(root->left, allTilt);
-        get_tilt(root->right, allTilt);
-        allTilt.push_back(tilt);
-        }
-    }
-
+    
 public:
     int findTilt(TreeNode* root) {
-
-        int sumAllTilt = 0;
-        std::vector<int> allTilt; 
-        get_tilt(root, allTilt);
-
-        for (int el: allTilt){
-            sumAllTilt += el;
-        }
-
-        return sumAllTilt;
-        
+        int sum;
+        return helper(root, sum);
     }
 };
+
+// class Solution {
+//     int sumSubTree (TreeNode* root){
+//         int sum = 0;
+//         if (root != NULL){
+//             sum+= (root->val + sumSubTree(root->left) + sumSubTree(root->right));
+//         }
+//         return sum;
+//     }
+
+//     void get_tilt(TreeNode* root, vector<int>& allTilt){
+
+//         if (root != NULL){
+//         int tilt = abs(sumSubTree(root->left) - sumSubTree(root->right));
+//         get_tilt(root->left, allTilt);
+//         get_tilt(root->right, allTilt);
+//         allTilt.push_back(tilt);
+//         }
+//     }
+
+// public:
+//     int findTilt(TreeNode* root) {
+
+//         int sumAllTilt = 0;
+//         std::vector<int> allTilt; 
+//         get_tilt(root, allTilt);
+
+//         for (int el: allTilt){
+//             sumAllTilt += el;
+//         }
+
+//         return sumAllTilt;
+        
+//     }
+// };
