@@ -12,6 +12,7 @@ public:
         vector<vector<int>> permutation;
         
         do {
+            //permutation.emplace_back(nums);
             permutation.push_back(nums);
         }
         while(next_permutation(nums.begin(), nums.end()));
