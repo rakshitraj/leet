@@ -1,5 +1,5 @@
 class Solution:
-    def decrypt(self, code: List[int], k: int) -> List[int]:
+    def decrypt(self, code: list[int], k: int) -> list[int]:
 
         enigma = [0] * len(code)
 
