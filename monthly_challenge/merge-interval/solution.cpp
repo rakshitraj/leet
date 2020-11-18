@@ -6,24 +6,34 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        
-        if (intervals.size() == 0) return vector<vector<int>>{};
-        
-        std::sort(intervals.begin(), intervals.end(), [](auto a, auto b) {
-            return a[0] < b[0];
-        });
-        
-        vector<vector<int>> res;
-        res.push_back(intervals[0]);
-        
-        for (int i=1; i<intervals.size(); i++) {
-            if (res.back()[1] >= intervals[i][0]){
-                auto back = res.back();
-                res.pop_back();
-                res.push_back(vector<int>{std::min(back[0], intervals[i][0]), std::max(back[1], intervals[i][1])});
-            }
-            else res.push_back(intervals[i]);
+        int i, n = intervals.size();
+        vector<pair<int, int>> v;
+        for(i=0;i<n;i++){
+            v.push_back(make_pair(intervals[i][0],intervals[i][1]));
         }
-        return res;
+        sort(v.begin(), v.end());
+        if(n == 0){
+            return vector<vector<int>>();
+        }
+        vector<vector<int>> ans;
+        int start = v[0].first;
+        int end = v[0].second;
+        for(i=1;i<n;i++){
+            if(end >= v[i].first){
+                end = max(end, v[i].second);
+            }else{
+                vector<int> interval;
+                interval.push_back(start);
+                interval.push_back(end);
+                ans.push_back(interval);
+                start = v[i].first;
+                end = v[i].second;
+            }
+        }
+        vector<int> interval;
+        interval.push_back(start);
+        interval.push_back(end);
+        ans.push_back(interval);
+        return ans;
     }
 };
