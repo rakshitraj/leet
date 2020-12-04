@@ -14,11 +14,11 @@ struct TreeNode {
 
 class Solution {
 
-    void getInorder(TreeNode* root, vector<TreeNode*>& inorder){
+    void getInorder(TreeNode* root, vector<int>& inorder){
         if (root == NULL) return;
 
         getInorder(root->left, inorder);
-        inorder.push_back(root);
+        inorder.push_back(root->val);
         getInorder(root->right, inorder);
     }
     
@@ -26,14 +26,16 @@ public:
     TreeNode* increasingBST(TreeNode* root){
         if (root == NULL) return nullptr;
 
-        std::vector<TreeNode*> inorder;
+        std::vector<int> inorder;
         getInorder(root, inorder);
         
-        TreeNode* new_root = inorder[0];
+        TreeNode* new_root = new TreeNode(inorder[0]);
+        TreeNode* curr = new_root;
 
-        for (int i=0; i<inorder.size()-1; i++){
-            inorder[i]->left = nullptr;
-            inorder[i]->right = inorder[i+1];
+        for (int i=1; i<inorder.size(); i++){
+            TreeNode* node = new TreeNode(inorder[i]);
+            curr->right = node;
+            curr = node;
         }
 
         return new_root;
