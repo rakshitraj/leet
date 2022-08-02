@@ -33,7 +33,7 @@ class Solution {
     }
 };
 
-void test(Solution obj) {
+void test (Solution obj) {
     // Test1
     string s1 = "abcabcbb";
     int ans1 = 3;
